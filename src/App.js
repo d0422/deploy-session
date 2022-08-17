@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes, useNavigate } from "react-router-dom";
+import Create from "./pages/Create";
+import Read from "./pages/Read";
+import ReadDetail from "./pages/ReadDetail";
+import Update from "./pages/Update";
 
 function App() {
+  const navigate = useNavigate("/");
+  const homeClick = () => {
+    navigate("/");
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Blog</h1>
+      <button onClick={homeClick}>Home</button>
+      <Routes>
+        <Route path="/" element={<Read />}></Route>
+        <Route path="/:id" element={<ReadDetail />}></Route>
+        <Route path="/create" element={<Create />}></Route>
+        <Route path="/:id/update" element={<Update />}></Route>
+      </Routes>
+    </>
   );
 }
 
